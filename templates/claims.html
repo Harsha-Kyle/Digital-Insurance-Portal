@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block content %}
+<h3>File a Claim</h3>
+<form method="post" enctype="multipart/form-data">
+  <div class="mb-3">
+    <label>Claim Details</label>
+    <textarea name="details" class="form-control" required></textarea>
+  </div>
+  <div class="mb-3">
+    <label>Upload Evidence</label>
+    <input type="file" name="file" class="form-control" required>
+  </div>
+  <button class="btn btn-danger">Submit Claim</button>
+</form>
+
+<hr>
+<h4>Your Past Claims</h4>
+<ul class="list-group">
+  {% for c in claims %}
+  <li class="list-group-item">
+    {{ c.details }}<br>
+    <small>Status: {{ c.status }} | Filed at: {{ c.filed_at.strftime('%Y-%m-%d') }}</small>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}
