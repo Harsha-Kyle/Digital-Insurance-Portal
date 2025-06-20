@@ -1,18 +1,12 @@
-{% extends "layout.html" %}
+{% extends 'base.html' %}
 {% block content %}
-<h3>Available Insurance Policies</h3>
-<div class="row">
-  {% for policy in policies %}
-  <div class="col-md-4 mb-4">
-    <div class="card shadow-sm">
-      <div class="card-body">
-        <h5 class="card-title">{{ policy.name }}</h5>
-        <p class="card-text"><strong>Type:</strong> {{ policy.type }}<br>
-        <strong>Premium:</strong> ₹{{ policy.premium }}</p>
-        <a href="/apply/{{ policy.id }}" class="btn btn-primary w-100">Apply</a>
-      </div>
-    </div>
-  </div>
-  {% endfor %}
-</div>
+<h2>Available Policies</h2>
+<ul>
+    {% for policy in policies %}
+    <li>
+        <strong>{{ policy.name }}</strong> - {{ policy.type }} - ₹{{ policy.premium }}
+        [<a href="/apply/{{ policy.id }}">Apply</a>]
+    </li>
+    {% endfor %}
+</ul>
 {% endblock %}
