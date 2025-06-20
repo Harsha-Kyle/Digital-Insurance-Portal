@@ -1,12 +1,38 @@
 body {
-    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f5f5f5;
 }
-.card {
-    border-radius: 15px;
+
+.navbar {
+    background: #0074D9;
+    padding: 10px;
+    color: white;
+    text-align: center;
 }
-.navbar-brand {
-    font-weight: bold;
+
+.navbar a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
 }
-.btn {
-    border-radius: 10px;
+
+.content {
+    padding: 20px;
+}
+
+form input, form textarea, form button {
+    display: block;
+    margin: 10px 0;
+    padding: 8px;
+    width: 300px;
+}
+
+.flashes {
+    list-style: none;
+    padding: 10px;
+    background-color: #ffdddd;
+    color: #a00;
+    margin-bottom: 20px;
 }
