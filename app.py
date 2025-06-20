@@ -1,4 +1,3 @@
-# app.py
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
@@ -44,6 +43,19 @@ def home():
     if 'user_id' not in session:
         return redirect('/login')
     return render_template('index.html')
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        if User.query.filter_by(email=request.form['email']).first():
+            flash('Email already registered')
+        else:
+            u = User(email=request.form['email'], password=request.form['password'])
+            db.session.add(u)
+            db.session.commit()
+            flash('Registered! Please login.')
+            return redirect('/login')
+    return render_template('register.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -96,4 +108,13 @@ def claims():
     return render_template('claims.html', claims=cls)
 
 if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
+        if not Policy.query.first():
+            db.session.add_all([
+                Policy(name="Health Secure", type="Health", premium=3000),
+                Policy(name="Life Plus", type="Life", premium=4500),
+                Policy(name="Vehicle Shield", type="Vehicle", premium=5000),
+            ])
+            db.session.commit()
     app.run(debug=True)
