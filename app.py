@@ -40,9 +40,7 @@ class Claim(db.Model):
 # Routes
 @app.route('/')
 def home():
-    if 'user_id' not in session:
-        return redirect('/login')
-    return render_template('index.html')
+    return render_template('home.html')
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -74,9 +72,7 @@ def logout():
 
 @app.route('/policies')
 def policies():
-    if 'user_id' not in session:
-        return redirect('/login')
-    return render_template('policies.html', policies=Policy.query.all())
+    return render_template('policies.html'))
 
 @app.route('/apply/<int:policy_id>', methods=['GET', 'POST'])
 def apply(policy_id):
