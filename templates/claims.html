@@ -1,26 +1,19 @@
-{% extends "layout.html" %}
+{% extends 'base.html' %}
 {% block content %}
-<h3>File a Claim</h3>
-<form method="post" enctype="multipart/form-data">
-  <div class="mb-3">
-    <label>Claim Details</label>
-    <textarea name="details" class="form-control" required></textarea>
-  </div>
-  <div class="mb-3">
-    <label>Upload Evidence</label>
-    <input type="file" name="file" class="form-control" required>
-  </div>
-  <button class="btn btn-danger">Submit Claim</button>
+<h2>Submit a Claim</h2>
+<form method="POST" enctype="multipart/form-data">
+    <textarea name="details" placeholder="Claim details..." required></textarea><br>
+    <input type="file" name="file" required><br>
+    <button type="submit">Submit Claim</button>
 </form>
 
-<hr>
-<h4>Your Past Claims</h4>
-<ul class="list-group">
-  {% for c in claims %}
-  <li class="list-group-item">
-    {{ c.details }}<br>
-    <small>Status: {{ c.status }} | Filed at: {{ c.filed_at.strftime('%Y-%m-%d') }}</small>
-  </li>
-  {% endfor %}
+<h3>Your Claims</h3>
+<ul>
+    {% for c in claims %}
+    <li>
+        {{ c.details }} — Status: {{ c.status }} — Filed on {{ c.filed_at.strftime('%Y-%m-%d') }}
+        {% if c.file %}<br><a href="{{ url_for('static', filename='uploads/' + c.file) }}" target="_blank">View File</a>{% endif %}
+    </li>
+    {% endfor %}
 </ul>
 {% endblock %}
