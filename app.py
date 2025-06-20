@@ -72,7 +72,7 @@ def logout():
 
 @app.route('/policies')
 def policies():
-    return render_template('policies.html'))
+    return render_template('policies.html')
 
 @app.route('/apply/<int:policy_id>', methods=['GET', 'POST'])
 def apply(policy_id):
