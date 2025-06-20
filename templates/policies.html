@@ -1,12 +1,31 @@
-{% extends 'base.html' %}
-{% block content %}
-<h2>Available Policies</h2>
-<ul>
-    {% for policy in policies %}
-    <li>
-        <strong>{{ policy.name }}</strong> - {{ policy.type }} - ₹{{ policy.premium }}
-        [<a href="/apply/{{ policy.id }}">Apply</a>]
-    </li>
-    {% endfor %}
-</ul>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GuardWise - Policies</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Our Insurance Plans</h1>
+        <div class="policy-list">
+            <div class="policy-card">
+                <h2>Health Insurance</h2>
+                <p>Protect your health with our comprehensive coverage plans.</p>
+                <button>Know More</button>
+            </div>
+            <div class="policy-card">
+                <h2>Life Insurance</h2>
+                <p>Secure your family’s future with flexible life plans.</p>
+                <button>Know More</button>
+            </div>
+            <div class="policy-card">
+                <h2>Vehicle Insurance</h2>
+                <p>Insure your car or bike with affordable premiums.</p>
+                <button>Know More</button>
+            </div>
+        </div>
+        <a href="/" class="back-link">← Back to Home</a>
+    </div>
+</body>
+</html>
